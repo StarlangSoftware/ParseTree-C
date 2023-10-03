@@ -26,7 +26,7 @@ void free_node_collector(Node_collector_ptr node_collector) {
 /**
  * Private recursive method to check all descendants of the parseNode, if they ever satisfy the given node condition
  * @param parseNode Root node of the subtree
- * @param collected The {@link ArrayList} where the collected ParseNode's will be stored.
+ * @param collected The ArrayList where the collected ParseNode's will be stored.
  */
 void collect_nodes(Node_collector_ptr node_collector, Parse_node_ptr parse_node, Array_list_ptr collected) {
     if (node_collector->satisfies == NULL || node_collector->satisfies(parse_node)){

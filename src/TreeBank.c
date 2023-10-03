@@ -9,7 +9,7 @@
 #include "ParseTree.h"
 
 /**
- * A constructor of {@link TreeBank} class which reads all {@link ParseTree] files inside the given folder. For each
+ * A constructor of TreeBank class which reads all {@link ParseTree] files inside the given folder. For each
  * file inside that folder, the constructor creates a ParseTree and puts in inside the list parseTrees.
  */
 Tree_bank_ptr create_tree_bank(const char *folder) {
