@@ -1,7 +1,7 @@
 from conans import ConanFile, CMake, tools
 
 
-class CorpusConan(ConanFile):
+class ParseTreeConan(ConanFile):
     name = "ParseTree-C"
     version = "1.0.0"
     requires = "Dictionary-C/1.0.0"
