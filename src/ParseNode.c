@@ -532,24 +532,13 @@ int word_count_node(const Parse_node *parse_node, bool exclude_stop_words) {
             sum = 1;
         } else {
             char* lowerCase = to_lowercase(parse_node->data->name);
-            if (strcmp(lowerCase, ",") == 0 || strcmp(lowerCase, ".") == 0 || strcmp(lowerCase, ";") == 0 || strcmp(lowerCase, "...") == 0
-                || str_find_c(lowerCase, "*") != -1 || strcmp(lowerCase, "at") == 0 || strcmp(lowerCase, "the") == 0
-                || strcmp(lowerCase, "to") == 0 || strcmp(lowerCase, "a") == 0 || strcmp(lowerCase, "an") == 0
-                || strcmp(lowerCase, "not") == 0 || strcmp(lowerCase, "is") == 0 || strcmp(lowerCase, "was") == 0
-                || strcmp(lowerCase, "were") == 0 || strcmp(lowerCase, "have") == 0 || strcmp(lowerCase, "had") == 0
-                || strcmp(lowerCase, "has") == 0 || strcmp(lowerCase, "!") == 0 || strcmp(lowerCase, "?") == 0
-                || strcmp(lowerCase, "by") == 0 || strcmp(lowerCase, "at") == 0 || strcmp(lowerCase, "on") == 0
-                || strcmp(lowerCase, "off") == 0 || strcmp(lowerCase, "'s") == 0 || strcmp(lowerCase, "n't") == 0
-                || strcmp(lowerCase, "can") == 0 || strcmp(lowerCase, "could") == 0 || strcmp(lowerCase, "may") == 0
-                || strcmp(lowerCase, "might") == 0 || strcmp(lowerCase, "will") == 0 || strcmp(lowerCase, "would") == 0
-                || strcmp(lowerCase, "''") == 0 || strcmp(lowerCase, "'") == 0 || strcmp(lowerCase, "\"") == 0
-                || strcmp(lowerCase, "\"\"") == 0 || strcmp(lowerCase, "as") == 0 || strcmp(lowerCase, "with") == 0
-                || strcmp(lowerCase, "for") == 0 || strcmp(lowerCase, "will") == 0 || strcmp(lowerCase, "would") == 0
-                || strcmp(lowerCase, "than") == 0 || strcmp(lowerCase, "``") == 0 || strcmp(lowerCase, "$") == 0
-                || strcmp(lowerCase, "and") == 0 || strcmp(lowerCase, "or") == 0 || strcmp(lowerCase, "of") == 0
-                || strcmp(lowerCase, "are") == 0 || strcmp(lowerCase, "be") == 0 || strcmp(lowerCase, "been") == 0
-                || strcmp(lowerCase, "do") == 0 || strcmp(lowerCase, "few") == 0 || strcmp(lowerCase, "there") == 0
-                || strcmp(lowerCase, "up") == 0 || strcmp(lowerCase, "down") == 0 || strcmp(lowerCase, "in") == 0 || strcmp(lowerCase, "'re") == 0) {
+            if (str_find_c(lowerCase, "*") != -1 ||
+            string_in_list(lowerCase, (char*[]) {",", ".", ";", "...", "at", "the", "to", "a", "an", "not", "is", "was",
+                                                 "were", "have", "had", "has", "!", "?", "by", "at", "on", "off", "'s",
+                                                 "n't", "can", "could", "may", "might", "will", "would", "''", "'",
+                                                 "\"", "\"\"", "as", "with", "for", "will", "would", "than", "``", "$",
+                                                 "and", "or", "of", "are", "be", "been", "do", "few", "there", "up",
+                                                 "down", "in", "'re"}, 55)) {
                 sum = 0;
             } else {
                 sum = 1;

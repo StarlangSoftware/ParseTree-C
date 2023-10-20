@@ -37,12 +37,7 @@ bool is_VP(const Word *word) {
  */
 bool is_terminal(const Word *word) {
     int i;
-    if (strcmp(word->name, ",") == 0 || strcmp(word->name, ".") == 0 || strcmp(word->name, "!") == 0 ||
-        strcmp(word->name, "?") == 0 || strcmp(word->name, ":") == 0
-        || strcmp(word->name, ";") == 0 || strcmp(word->name, "\"") == 0 || strcmp(word->name, "''") == 0 ||
-        strcmp(word->name, "'") == 0 || strcmp(word->name, "`") == 0
-        || strcmp(word->name, "``") == 0 || strcmp(word->name, "...") == 0 || strcmp(word->name, "-") == 0 ||
-        strcmp(word->name, "--") == 0)
+    if (string_in_list(word->name, (char*[]) {",", ".", "!", "?", ":", ";", "\"", "''", "'", "`", "``", "...", "-", "--"}, 14))
         return true;
     if (contains(non_terminal_list, 62, word->name)) {
         return false;
