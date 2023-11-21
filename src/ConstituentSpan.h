@@ -8,7 +8,7 @@
 #include <Dictionary/Word.h>
 
 struct constituent_span {
-    Word_ptr constituent;
+    char* constituent;
     int start;
     int end;
 };
@@ -17,7 +17,7 @@ typedef struct constituent_span Constituent_span;
 
 typedef Constituent_span *Constituent_span_ptr;
 
-Constituent_span_ptr create_constituent_span(const Word* constituent, int start, int end);
+Constituent_span_ptr create_constituent_span(const char* constituent, int start, int end);
 
 void free_constituent_span(Constituent_span_ptr constituent_span);
 

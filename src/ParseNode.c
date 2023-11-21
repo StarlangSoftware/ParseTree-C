@@ -12,7 +12,7 @@
  * Another simple constructor for ParseNode. It only take input the data, and sets it.
  * @param data Data for this node.
  */
-Parse_node_ptr create_parse_node(Word_ptr data) {
+Parse_node_ptr create_parse_node(char* data) {
     Parse_node_ptr result = create_parse_node5();
     result->data = data;
     return result;
@@ -33,10 +33,10 @@ Parse_node_ptr create_parse_node2(Parse_node_ptr parent,
     int parenthesisCount = 0;
     result->parent = parent;
     if (is_leaf) {
-        result->data = create_word(line);
+        result->data = str_copy(result->data, line);
     } else {
         tmp = substring(line, 1, str_find_c(line, " ") - 1);
-        result->data = create_word(tmp->s);
+        result->data = str_copy(result->data, tmp->s);
         free_string_ptr(tmp);
         if (str_find_c(line, ")") == str_find_last_c(line, ")")) {
             tmp = substring(line, str_find_c(line, " ") + 1, str_find_c(line, ")") - str_find_c(line, " ") - 1);
@@ -79,7 +79,7 @@ Parse_node_ptr create_parse_node2(Parse_node_ptr parent,
  */
 Parse_node_ptr create_parse_node3(Parse_node_ptr left,
                                   Parse_node_ptr right,
-                                  Word_ptr data) {
+                                  char* data) {
     Parse_node_ptr result = create_parse_node4(left, data);
     array_list_add(result->children, right);
     right->parent = result;
@@ -92,7 +92,7 @@ Parse_node_ptr create_parse_node3(Parse_node_ptr left,
  * @param left Left child of this node.
  * @param data Data for this node.
  */
-Parse_node_ptr create_parse_node4(Parse_node_ptr left, Word_ptr data) {
+Parse_node_ptr create_parse_node4(Parse_node_ptr left, char* data) {
     Parse_node_ptr result = create_parse_node(data);
     array_list_add(result->children, left);
     left->parent = result;
@@ -112,7 +112,7 @@ void free_parse_node(Parse_node_ptr parse_node) {
         free_parse_node(array_list_get(parse_node->children, i));
     }
     free_array_list(parse_node->children, NULL);
-    free_word(parse_node->data);
+    free(parse_node->data);
     free(parse_node);
 }
 
@@ -136,12 +136,12 @@ Parse_node_ptr search_head_child(const Parse_node* parse_node,
                 const char *item = priority_list[i];
                 for (int j = 0; j < parse_node->children->size; j++) {
                     Parse_node_ptr child = array_list_get(parse_node->children, j);
-                    Word_ptr trimmed = trim_symbol(child->data);
-                    if (strcmp(trimmed->name, item) == 0) {
-                        free_word(trimmed);
+                    char* trimmed = trim_symbol(child->data);
+                    if (strcmp(trimmed, item) == 0) {
+                        free(trimmed);
                         return child;
                     }
-                    free_word(trimmed);
+                    free(trimmed);
                 }
             }
             if (default_case) {
@@ -153,12 +153,12 @@ Parse_node_ptr search_head_child(const Parse_node* parse_node,
                 const char *item = priority_list[i];
                 for (int j = parse_node->children->size - 1; j >= 0; j--) {
                     Parse_node_ptr child = array_list_get(parse_node->children, j);
-                    Word_ptr trimmed = trim_symbol(child->data);
-                    if (strcmp(trimmed->name, item) == 0) {
-                        free_word(trimmed);
+                    char* trimmed = trim_symbol(child->data);
+                    if (strcmp(trimmed, item) == 0) {
+                        free(trimmed);
                         return child;
                     }
-                    free_word(trimmed);
+                    free(trimmed);
                 }
             }
             if (default_case) {
@@ -194,78 +194,78 @@ Parse_node_ptr head_leaf(Parse_node_ptr parse_node) {
  */
 Parse_node_ptr head_child(const Parse_node* parse_node) {
     Parse_node_ptr result = NULL;
-    Word_ptr head_symbol = trim_symbol(parse_node->data);
-    if (strcmp(head_symbol->name, "ADJP") == 0) {
+    char* head_symbol = trim_symbol(parse_node->data);
+    if (strcmp(head_symbol, "ADJP") == 0) {
         result = search_head_child(parse_node, ADJP, 18, LEFT, true);
     } else {
-        if (strcmp(head_symbol->name, "ADVP") == 0) {
+        if (strcmp(head_symbol, "ADVP") == 0) {
             result = search_head_child(parse_node, ADVP, 13, RIGHT, true);
         } else {
-            if (strcmp(head_symbol->name, "CONJP") == 0) {
+            if (strcmp(head_symbol, "CONJP") == 0) {
                 result = search_head_child(parse_node, CONJP, 3, RIGHT, true);
             } else {
-                if (strcmp(head_symbol->name, "FRAG") == 0) {
+                if (strcmp(head_symbol, "FRAG") == 0) {
                     result = search_head_child(parse_node, FRAG, 0, RIGHT, true);
                 } else {
-                    if (strcmp(head_symbol->name, "INTJ") == 0){
+                    if (strcmp(head_symbol, "INTJ") == 0){
                         result = search_head_child(parse_node, INTJ, 0, LEFT, true);
                     } else {
-                        if (strcmp(head_symbol->name, "LST") == 0){
+                        if (strcmp(head_symbol, "LST") == 0){
                             result = search_head_child(parse_node, LST, 2, RIGHT, true);
                         } else {
-                            if (strcmp(head_symbol->name, "NAC") == 0){
+                            if (strcmp(head_symbol, "NAC") == 0){
                                 result = search_head_child(parse_node, NAC, 17, LEFT, true);
                             } else {
-                                if (strcmp(head_symbol->name, "PP") == 0){
+                                if (strcmp(head_symbol, "PP") == 0){
                                     result = search_head_child(parse_node, PP, 6, RIGHT, true);
                                 } else {
-                                    if (strcmp(head_symbol->name, "PRN") == 0){
+                                    if (strcmp(head_symbol, "PRN") == 0){
                                         result = search_head_child(parse_node, PRN, 0, LEFT, true);
                                     } else {
-                                        if (strcmp(head_symbol->name, "PRT") == 0){
+                                        if (strcmp(head_symbol, "PRT") == 0){
                                             result = search_head_child(parse_node, PRT, 1, RIGHT, true);
                                         } else {
-                                            if (strcmp(head_symbol->name, "QP") == 0){
+                                            if (strcmp(head_symbol, "QP") == 0){
                                                 result = search_head_child(parse_node, QP, 12, LEFT, true);
                                             } else {
-                                                if (strcmp(head_symbol->name, "RRC") == 0){
+                                                if (strcmp(head_symbol, "RRC") == 0){
                                                     result = search_head_child(parse_node, RRC, 5, RIGHT, true);
                                                 } else {
-                                                    if (strcmp(head_symbol->name, "S") == 0){
+                                                    if (strcmp(head_symbol, "S") == 0){
                                                         result = search_head_child(parse_node, S, 8, LEFT, true);
                                                     } else {
-                                                        if (strcmp(head_symbol->name, "SBAR") == 0){
+                                                        if (strcmp(head_symbol, "SBAR") == 0){
                                                             result = search_head_child(parse_node, SBAR, 11, LEFT, true);
                                                         } else {
-                                                            if (strcmp(head_symbol->name, "SBARQ") == 0){
+                                                            if (strcmp(head_symbol, "SBARQ") == 0){
                                                                 result = search_head_child(parse_node, SBARQ, 5, LEFT, true);
                                                             } else {
-                                                                if (strcmp(head_symbol->name, "SINV") == 0){
+                                                                if (strcmp(head_symbol, "SINV") == 0){
                                                                     result = search_head_child(parse_node, SINV, 10, LEFT, true);
                                                                 } else {
-                                                                    if (strcmp(head_symbol->name, "SQ") == 0){
+                                                                    if (strcmp(head_symbol, "SQ") == 0){
                                                                         result = search_head_child(parse_node, SQ, 7, LEFT, true);
                                                                     } else {
-                                                                        if (strcmp(head_symbol->name, "UCP") == 0){
+                                                                        if (strcmp(head_symbol, "UCP") == 0){
                                                                             result = search_head_child(parse_node, UCP, 0, RIGHT, true);
                                                                         } else {
-                                                                            if (strcmp(head_symbol->name, "VP") == 0){
+                                                                            if (strcmp(head_symbol, "VP") == 0){
                                                                                 result = search_head_child(parse_node, VP, 13, LEFT, true);
                                                                             } else {
-                                                                                if (strcmp(head_symbol->name, "WHADJP") == 0){
+                                                                                if (strcmp(head_symbol, "WHADJP") == 0){
                                                                                     result = search_head_child(parse_node, WHADJP, 4, LEFT, true);
                                                                                 } else {
-                                                                                    if (strcmp(head_symbol->name, "WHADVP") == 0){
+                                                                                    if (strcmp(head_symbol, "WHADVP") == 0){
                                                                                         result = search_head_child(parse_node, WHADVP, 2, RIGHT, true);
                                                                                     } else {
-                                                                                        if (strcmp(head_symbol->name, "WHNP") == 0){
+                                                                                        if (strcmp(head_symbol, "WHNP") == 0){
                                                                                             result = search_head_child(parse_node, WHNP, 6, LEFT, true);
                                                                                         } else {
-                                                                                            if (strcmp(head_symbol->name, "WHPP") == 0){
+                                                                                            if (strcmp(head_symbol, "WHPP") == 0){
                                                                                                 result = search_head_child(parse_node, WHPP, 3, RIGHT, true);
                                                                                             } else {
-                                                                                                if (strcmp(head_symbol->name, "NP") == 0){
-                                                                                                    if (strcmp(last_child(parse_node)->data->name, "POS") == 0){
+                                                                                                if (strcmp(head_symbol, "NP") == 0){
+                                                                                                    if (strcmp(last_child(parse_node)->data, "POS") == 0){
                                                                                                         return last_child(parse_node);
                                                                                                     } else {
                                                                                                         result = search_head_child(parse_node, NP1, 7, RIGHT, false);
@@ -319,7 +319,7 @@ Parse_node_ptr head_child(const Parse_node* parse_node) {
             }
         }
     }
-    free_word(head_symbol);
+    free(head_symbol);
     return result;
 }
 
@@ -435,7 +435,7 @@ void strip_punctuation_r(Parse_node_ptr parse_node) {
     int i = 0;
     while (i < parse_node->children->size) {
         Parse_node_ptr child = array_list_get(parse_node->children, i);
-        if (is_punctuation(child->data->name)){
+        if (is_punctuation(child->data)){
             array_list_remove(parse_node->children, i, (void (*)(void *)) free_parse_node);
         } else {
             i++;
@@ -531,7 +531,7 @@ int word_count_node(const Parse_node *parse_node, bool exclude_stop_words) {
         if (!exclude_stop_words){
             sum = 1;
         } else {
-            char* lowerCase = to_lowercase(parse_node->data->name);
+            char* lowerCase = to_lowercase(parse_node->data);
             if (str_find_c(lowerCase, "*") != -1 ||
             string_in_list(lowerCase, (char*[]) {",", ".", ";", "...", "at", "the", "to", "a", "an", "not", "is", "was",
                                                  "were", "have", "had", "has", "!", "?", "by", "at", "on", "off", "'s",
@@ -568,7 +568,7 @@ bool is_leaf(const Parse_node *parse_node) {
  * @return true if this node does not contain a meaningful data, false otherwise.
  */
 bool is_dummy_node(const Parse_node *parse_node) {
-    return str_find_c(parse_node->data->name, "*") != -1 || (strcmp(parse_node->data->name, "0") == 0 && strcmp(parse_node->parent->data->name, "-NONE-") == 0);
+    return str_find_c(parse_node->data, "*") != -1 || (strcmp(parse_node->data, "0") == 0 && strcmp(parse_node->parent->data, "-NONE-") == 0);
 }
 
 /**
@@ -578,10 +578,10 @@ bool is_dummy_node(const Parse_node *parse_node) {
 String_ptr parse_node_to_string(const Parse_node *parse_node) {
     if (parse_node->children->size < 2){
         if (parse_node->children->size == 0){
-            return create_string2(parse_node->data->name);
+            return create_string2(parse_node->data);
         } else {
             String_ptr s = create_string2("");
-            string_append(s, parse_node->data->name);
+            string_append(s, parse_node->data);
             string_append(s, " ");
             String_ptr child_string = parse_node_to_string(first_child(parse_node));
             string_append(s, child_string->s);
@@ -591,10 +591,10 @@ String_ptr parse_node_to_string(const Parse_node *parse_node) {
         }
     } else {
         String_ptr s = create_string2("(");
-        string_append(s, parse_node->data->name);
+        string_append(s, parse_node->data);
         for (int i = 0; i < parse_node->children->size; i++) {
             Parse_node_ptr child = array_list_get(parse_node->children, i);
-            String_ptr child_string = parse_node_to_string(first_child(parse_node));
+            String_ptr child_string = parse_node_to_string(child);
             string_append(s, child_string->s);
             free_string_ptr(child_string);
         }
@@ -632,10 +632,10 @@ void move_left(Parse_node_ptr parse_node, const Parse_node* node) {
  */
 String_ptr ancestor_string(const Parse_node *parse_node) {
     if (parse_node->parent == NULL){
-        return create_string2(parse_node->data->name);
+        return create_string2(parse_node->data);
     } else {
         String_ptr s = ancestor_string(parse_node->parent);
-        string_append(s, parse_node->data->name);
+        string_append(s, parse_node->data);
         return s;
     }
 }

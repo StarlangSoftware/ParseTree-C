@@ -4,35 +4,32 @@
 
 #include <string.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include "../src/Symbol.h"
 
 int main(){
-    Word_ptr word = create_word("NP-SBJ");
-    Word_ptr result = trim_symbol(word);
-    if (strcmp(result->name, "NP") != 0){
+    char* word = "NP-SBJ";
+    char* result = trim_symbol(word);
+    if (strcmp(result, "NP") != 0){
         printf("Error in trim 1");
     }
-    free_word(word);
-    free_word(result);
-    word = create_word("VP-SBJ-2");
+    free(result);
+    word = "VP-SBJ-2";
     result = trim_symbol(word);
-    if (strcmp(result->name, "VP") != 0){
+    if (strcmp(result, "VP") != 0){
         printf("Error in trim 2");
     }
-    free_word(word);
-    free_word(result);
-    word = create_word("NNP-SBJ-OBJ-TN");
+    free(result);
+    word = "NNP-SBJ-OBJ-TN";
     result = trim_symbol(word);
-    if (strcmp(result->name, "NNP") != 0){
+    if (strcmp(result, "NNP") != 0){
         printf("Error in trim 3");
     }
-    free_word(word);
-    free_word(result);
-    word = create_word("S-SBJ=OBJ");
+    free(result);
+    word = "S-SBJ=OBJ";
     result = trim_symbol(word);
-    if (strcmp(result->name, "S") != 0){
+    if (strcmp(result, "S") != 0){
         printf("Error in trim 4");
     }
-    free_word(word);
-    free_word(result);
+    free(result);
 }

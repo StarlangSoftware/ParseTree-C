@@ -108,7 +108,7 @@ int leaf_count(const Parse_tree *parse_tree) {
 }
 
 bool is_full_sentence(const Parse_tree *parse_tree) {
-    if (parse_tree->root != NULL && contains(sentence_labels, 5, parse_tree->root->data->name)){
+    if (parse_tree->root != NULL && contains(sentence_labels, 5, parse_tree->root->data)){
         return true;
     }
     return false;

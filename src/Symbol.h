@@ -23,14 +23,14 @@ static const char *VPLabel = "VP";
 
 bool contains(const char* list[], int size, const char* searchedItem);
 
-bool is_verb(const Word* word);
+bool is_verb(const char* word);
 
-bool is_VP(const Word* word);
+bool is_VP(const char* word);
 
-bool is_terminal(const Word* word);
+bool is_terminal(const char* word);
 
-bool is_chunk_label(const Word* word);
+bool is_chunk_label(const char* word);
 
-Word_ptr trim_symbol(Word_ptr word);
+char* trim_symbol(char* word);
 
 #endif //PARSETREE_SYMBOL_H

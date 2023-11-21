@@ -12,7 +12,7 @@
 struct parse_node {
     Array_list_ptr children;
     struct parse_node *parent;
-    Word_ptr data;
+    char* data;
 };
 
 static const char *ADJP[] = {"NNS", "QP", "NN", "$", "ADVP", "JJ", "VBN", "VBG", "ADJP", "JJR", "NP", "JJS", "DT", "FW",
@@ -51,15 +51,15 @@ typedef struct parse_node Parse_node;
 
 typedef Parse_node *Parse_node_ptr;
 
-Parse_node_ptr create_parse_node(Word_ptr data);
+Parse_node_ptr create_parse_node(char* data);
 
 Parse_node_ptr create_parse_node2(Parse_node_ptr parent,
                                   const char *line,
                                   bool is_leaf);
 
-Parse_node_ptr create_parse_node3(Parse_node_ptr left, Parse_node_ptr right, Word_ptr data);
+Parse_node_ptr create_parse_node3(Parse_node_ptr left, Parse_node_ptr right, char* data);
 
-Parse_node_ptr create_parse_node4(Parse_node_ptr left, Word_ptr data);
+Parse_node_ptr create_parse_node4(Parse_node_ptr left, char* data);
 
 Parse_node_ptr create_parse_node5();
 
