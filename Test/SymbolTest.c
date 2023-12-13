@@ -4,7 +4,7 @@
 
 #include <string.h>
 #include <stdio.h>
-#include <stdlib.h>
+#include <Memory/Memory.h>
 #include "../src/Symbol.h"
 
 int main(){
@@ -13,23 +13,23 @@ int main(){
     if (strcmp(result, "NP") != 0){
         printf("Error in trim 1");
     }
-    free(result);
+    free_(result);
     word = "VP-SBJ-2";
     result = trim_symbol(word);
     if (strcmp(result, "VP") != 0){
         printf("Error in trim 2");
     }
-    free(result);
+    free_(result);
     word = "NNP-SBJ-OBJ-TN";
     result = trim_symbol(word);
     if (strcmp(result, "NNP") != 0){
         printf("Error in trim 3");
     }
-    free(result);
+    free_(result);
     word = "S-SBJ=OBJ";
     result = trim_symbol(word);
     if (strcmp(result, "S") != 0){
         printf("Error in trim 4");
     }
-    free(result);
+    free_(result);
 }

@@ -4,6 +4,7 @@
 
 #include <stdlib.h>
 #include <string.h>
+#include <Memory/Memory.h>
 #include "ParseNode.h"
 #include "Symbol.h"
 #include "ConstituentSpan.h"
@@ -100,7 +101,7 @@ Parse_node_ptr create_parse_node4(Parse_node_ptr left, char* data) {
 }
 
 Parse_node_ptr create_parse_node5() {
-    Parse_node_ptr result = malloc(sizeof(Parse_node));
+    Parse_node_ptr result = malloc_(sizeof(Parse_node), "create_parse_node5");
     result->data = NULL;
     result->parent = NULL;
     result->children = create_array_list();
@@ -112,8 +113,8 @@ void free_parse_node(Parse_node_ptr parse_node) {
         free_parse_node(array_list_get(parse_node->children, i));
     }
     free_array_list(parse_node->children, NULL);
-    free(parse_node->data);
-    free(parse_node);
+    free_(parse_node->data);
+    free_(parse_node);
 }
 
 /**
@@ -138,10 +139,10 @@ Parse_node_ptr search_head_child(const Parse_node* parse_node,
                     Parse_node_ptr child = array_list_get(parse_node->children, j);
                     char* trimmed = trim_symbol(child->data);
                     if (strcmp(trimmed, item) == 0) {
-                        free(trimmed);
+                        free_(trimmed);
                         return child;
                     }
-                    free(trimmed);
+                    free_(trimmed);
                 }
             }
             if (default_case) {
@@ -155,10 +156,10 @@ Parse_node_ptr search_head_child(const Parse_node* parse_node,
                     Parse_node_ptr child = array_list_get(parse_node->children, j);
                     char* trimmed = trim_symbol(child->data);
                     if (strcmp(trimmed, item) == 0) {
-                        free(trimmed);
+                        free_(trimmed);
                         return child;
                     }
-                    free(trimmed);
+                    free_(trimmed);
                 }
             }
             if (default_case) {
@@ -319,7 +320,7 @@ Parse_node_ptr head_child(const Parse_node* parse_node) {
             }
         }
     }
-    free(head_symbol);
+    free_(head_symbol);
     return result;
 }
 
@@ -543,6 +544,7 @@ int word_count_node(const Parse_node *parse_node, bool exclude_stop_words) {
             } else {
                 sum = 1;
             }
+            free_(lowerCase);
         }
     }
     else{

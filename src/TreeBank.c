@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <dirent.h>
 #include <HashMap/HashMap.h>
+#include <Memory/Memory.h>
 #include "TreeBank.h"
 #include "ParseTree.h"
 
@@ -13,7 +14,7 @@
  * file inside that folder, the constructor creates a ParseTree and puts in inside the list parseTrees.
  */
 Tree_bank_ptr create_tree_bank(const char *folder) {
-    Tree_bank_ptr result = malloc(sizeof(Tree_bank));
+    Tree_bank_ptr result = malloc_(sizeof(Tree_bank), "create_tree_bank");
     result->parse_trees = create_array_list();
     DIR *d;
     struct dirent *dir;
@@ -24,7 +25,7 @@ Tree_bank_ptr create_tree_bank(const char *folder) {
                 String_ptr tmp = create_string4(folder, "/", dir->d_name);
                 Parse_tree_ptr parse_tree = create_parse_tree(tmp->s);
                 free_string_ptr(tmp);
-                free(parse_tree->name);
+                free_(parse_tree->name);
                 parse_tree->name = str_copy(parse_tree->name, dir->d_name);
                 array_list_add(result->parse_trees, parse_tree);
             }
@@ -37,7 +38,7 @@ Tree_bank_ptr create_tree_bank(const char *folder) {
 
 void free_tree_bank(Tree_bank_ptr tree_bank) {
     free_array_list(tree_bank->parse_trees, (void (*)(void *)) free_parse_tree);
-    free(tree_bank);
+    free_(tree_bank);
 }
 
 /**

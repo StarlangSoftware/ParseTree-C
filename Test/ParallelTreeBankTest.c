@@ -10,4 +10,5 @@ int main(){
     if (tree_bank_size(parallel_tree_bank->from_tree_bank) != 3){
         printf("Error in Parallel_tree_bank_ptr");
     }
+    free_parallel_tree_bank(parallel_tree_bank);
 }

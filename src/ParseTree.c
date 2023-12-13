@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <FileUtils.h>
 #include <string.h>
+#include <Memory/Memory.h>
 #include "ParseTree.h"
 #include "NodeCollector.h"
 #include "NodeCondition/IsEnglishLeaf.h"
@@ -18,7 +19,7 @@
  */
 Parse_tree_ptr create_parse_tree(const char *file_name) {
     char line[MAX_LINE_LENGTH];
-    Parse_tree_ptr result = malloc(sizeof(Parse_tree));
+    Parse_tree_ptr result = malloc_(sizeof(Parse_tree), "create_parse_tree");
     result->name = str_copy(result->name, file_name);
     FILE* input_file = fopen(file_name, "r");
     char* read = fgets(line, MAX_LINE_LENGTH, input_file);
@@ -38,11 +39,11 @@ Parse_tree_ptr create_parse_tree(const char *file_name) {
 }
 
 void free_parse_tree(Parse_tree_ptr parse_tree) {
-    free(parse_tree->name);
+    free_(parse_tree->name);
     if (parse_tree->root != NULL){
         free_parse_node(parse_tree->root);
     }
-    free(parse_tree);
+    free_(parse_tree);
 }
 
 /**

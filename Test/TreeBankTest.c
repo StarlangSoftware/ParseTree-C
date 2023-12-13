@@ -13,4 +13,5 @@ int main(){
     if (word_count_tree_bank(tree_bank, true) != 30){
         printf("Error in tree bank test 2");
     }
+    free_tree_bank(tree_bank);
 }

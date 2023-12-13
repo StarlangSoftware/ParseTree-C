@@ -5,9 +5,10 @@
 #include <stdlib.h>
 #include <HashMap/HashMap.h>
 #include "ParallelTreeBank.h"
+#include "Memory/Memory.h"
 
 Parallel_tree_bank_ptr create_parallel_tree_bank(const char *folder1, const char *folder2) {
-    Parallel_tree_bank_ptr result = malloc(sizeof(Parallel_tree_bank));
+    Parallel_tree_bank_ptr result = malloc_(sizeof(Parallel_tree_bank), "create_parallel_tree_bank");
     result->from_tree_bank = create_tree_bank(folder1);
     result->to_tree_bank = create_tree_bank(folder2);
     remove_different_trees(result);
@@ -17,7 +18,7 @@ Parallel_tree_bank_ptr create_parallel_tree_bank(const char *folder1, const char
 void free_parallel_tree_bank(Parallel_tree_bank_ptr parallel_tree_bank) {
     free_tree_bank(parallel_tree_bank->from_tree_bank);
     free_tree_bank(parallel_tree_bank->to_tree_bank);
-    free(parallel_tree_bank);
+    free_(parallel_tree_bank);
 }
 
 void remove_different_trees(Parallel_tree_bank_ptr parallel_tree_bank) {
