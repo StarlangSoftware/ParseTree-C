@@ -23,7 +23,7 @@ static const char *VPLabel = "VP";
 
 bool contains(const char* list[], int size, const char* searchedItem);
 
-bool is_verb(const char* word);
+bool is_symbol_verb(const char* word);
 
 bool is_VP(const char* word);
 

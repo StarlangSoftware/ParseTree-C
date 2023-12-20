@@ -9,7 +9,7 @@
  * Checks if this symbol is a verb type.
  * @return True if the symbol is a verb, false otherwise.
  */
-bool is_verb(const char *word) {
+bool is_symbol_verb(const char *word) {
     return contains(verb_labels, 62, word);
 }
 
