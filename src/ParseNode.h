@@ -92,7 +92,7 @@ void strip_punctuation_r(Parse_node_ptr parse_node);
 
 int number_of_children(const Parse_node *parse_node);
 
-Parse_node_ptr get_child(const Parse_node *parse_node, int i);
+Parse_node_ptr get_parse_node_child(const Parse_node *parse_node, int i);
 
 Parse_node_ptr first_child(const Parse_node *parse_node);
 

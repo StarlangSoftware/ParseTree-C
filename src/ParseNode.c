@@ -461,7 +461,7 @@ int number_of_children(const Parse_node* parse_node) {
  * @param i Index of the retrieved node.
  * @return i'th child of this node.
  */
-Parse_node_ptr get_child(const Parse_node *parse_node, int i) {
+Parse_node_ptr get_parse_node_child(const Parse_node *parse_node, int i) {
     return array_list_get(parse_node->children, i);
 }
 
