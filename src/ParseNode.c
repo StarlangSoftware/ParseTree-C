@@ -582,7 +582,7 @@ String_ptr parse_node_to_string(const Parse_node *parse_node) {
         if (parse_node->children->size == 0){
             return create_string2(parse_node->data);
         } else {
-            String_ptr s = create_string2("");
+            String_ptr s = create_string2("(");
             string_append(s, parse_node->data);
             string_append(s, " ");
             String_ptr child_string = parse_node_to_string(first_child(parse_node));
@@ -597,6 +597,7 @@ String_ptr parse_node_to_string(const Parse_node *parse_node) {
         for (int i = 0; i < parse_node->children->size; i++) {
             Parse_node_ptr child = array_list_get(parse_node->children, i);
             String_ptr child_string = parse_node_to_string(child);
+            string_append(s, " ");
             string_append(s, child_string->s);
             free_string_ptr(child_string);
         }
