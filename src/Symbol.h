@@ -8,7 +8,7 @@
 #ifndef PARSETREE_SYMBOL_H
 #define PARSETREE_SYMBOL_H
 
-static const char *non_terminal_list[] = {"ADJP", "ADVP", "CC", "CD", "CONJP", "DT", "EX", "FRAG", "FW", "IN", "INTJ", "JJ",
+static const char *non_terminal_list[] = {"ADJP", "ADVP", "CC", "CD", "CONJP", "DT", "EX", "FRAG", "FW", "IN", "INTERJ", "JJ",
                                           "JJR", "JJS", "LS",
                                           "LST", "MD", "NAC", "NN", "NNP", "NNPS", "NNS", "NP", "NX", "PDT", "POS", "PP", "PRN",
                                           "PRP", "PRP$", "PRT",

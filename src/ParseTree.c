@@ -161,3 +161,10 @@ Array_list_ptr constituent_span_list(const Parse_tree *parse_tree) {
 int compare_parse_tree(const Parse_tree *parse_tree1, const Parse_tree *parse_tree2) {
     return strcmp(parse_tree1->name, parse_tree2->name);
 }
+
+Parse_tree_ptr create_parse_tree2(Parse_node_ptr root) {
+    Parse_tree_ptr result = malloc_(sizeof(Parse_tree), "create_parse_tree2");
+    result->root = root;
+    result->name = NULL;
+    return result;
+}

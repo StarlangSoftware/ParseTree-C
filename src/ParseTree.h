@@ -18,6 +18,8 @@ typedef Parse_tree *Parse_tree_ptr;
 
 Parse_tree_ptr create_parse_tree(const char *file_name);
 
+Parse_tree_ptr create_parse_tree2(Parse_node_ptr root);
+
 void free_parse_tree(Parse_tree_ptr parse_tree);
 
 Parse_node_ptr next_leaf_node(const Parse_tree *parse_tree, const Parse_node *parse_node);

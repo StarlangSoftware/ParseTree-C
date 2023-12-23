@@ -208,8 +208,8 @@ Parse_node_ptr head_child(const Parse_node* parse_node) {
                 if (strcmp(head_symbol, "FRAG") == 0) {
                     result = search_head_child(parse_node, FRAG, 0, RIGHT, true);
                 } else {
-                    if (strcmp(head_symbol, "INTJ") == 0){
-                        result = search_head_child(parse_node, INTJ, 0, LEFT, true);
+                    if (strcmp(head_symbol, "INTERJ") == 0){
+                        result = search_head_child(parse_node, INTERJ, 0, LEFT, true);
                     } else {
                         if (strcmp(head_symbol, "LST") == 0){
                             result = search_head_child(parse_node, LST, 2, RIGHT, true);

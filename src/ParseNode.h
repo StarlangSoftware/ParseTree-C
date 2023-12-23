@@ -21,7 +21,7 @@ static const char *ADJP[] = {"NNS", "QP", "NN", "$", "ADVP", "JJ", "VBN", "VBG",
 static const char *ADVP[] = {"RB", "RBR", "RBS", "FW", "ADVP", "TO", "CD", "JJR", "JJ", "IN", "NP", "JJS", "NN"};
 static const char *CONJP[] = {"CC", "RB", "IN"};
 static const char *FRAG[] = {};
-static const char *INTJ[] = {};
+static const char *INTERJ[] = {};
 static const char *LST[] = {"LS", ":"};
 static const char *NAC[] = {"NN", "NNS", "NNP", "NNPS", "NP", "NAC", "EX", "$", "CD", "QP", "PRP", "VBG", "JJ", "JJS",
                             "JJR", "ADJP", "FW"};
