@@ -7,7 +7,7 @@
 #include "NodeCollector.h"
 
 /**
- * Constructor for the NodeCollector class. NodeCollector's main aim is to collect a set of ParseNode's from a
+ * Constructor for the NodeCollector class. NodeCollector's main aim is to parse_node_collect a set of ParseNode's from a
  * subtree rooted at rootNode, where the ParseNode's satisfy a given NodeCondition, which is implemented by other
  * interface class.
  * @param root_node Root node of the subtree
@@ -29,13 +29,13 @@ void free_node_collector(Node_collector_ptr node_collector) {
  * @param parseNode Root node of the subtree
  * @param collected The ArrayList where the collected ParseNode's will be stored.
  */
-void collect_nodes(Node_collector_ptr node_collector, Parse_node_ptr parse_node, Array_list_ptr collected) {
+void parse_node_collect_nodes(Node_collector_ptr node_collector, Parse_node_ptr parse_node, Array_list_ptr collected) {
     if (node_collector->satisfies == NULL || node_collector->satisfies(parse_node)){
         array_list_add(collected,parse_node);
     }
     for (int i = 0; i < parse_node->children->size; i++){
         Parse_node_ptr child = array_list_get(parse_node->children, i);
-        collect_nodes(node_collector, child, collected);
+        parse_node_collect_nodes(node_collector, child, collected);
     }
 }
 
@@ -43,8 +43,8 @@ void collect_nodes(Node_collector_ptr node_collector, Parse_node_ptr parse_node,
  * Collects and returns all ParseNode's satisfying the node condition.
  * @return All ParseNode's satisfying the node condition.
  */
-Array_list_ptr collect(Node_collector_ptr node_collector) {
+Array_list_ptr parse_node_collect(Node_collector_ptr node_collector) {
     Array_list_ptr result = create_array_list();
-    collect_nodes(node_collector, node_collector->root_node, result);
+    parse_node_collect_nodes(node_collector, node_collector->root_node, result);
     return result;
 }

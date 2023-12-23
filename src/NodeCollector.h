@@ -20,8 +20,8 @@ Node_collector_ptr create_node_collector(Parse_node_ptr root_node, bool (*satisf
 
 void free_node_collector(Node_collector_ptr node_collector);
 
-void collect_nodes(Node_collector_ptr node_collector, Parse_node_ptr parse_node, Array_list_ptr collected);
+void parse_node_collect_nodes(Node_collector_ptr node_collector, Parse_node_ptr parse_node, Array_list_ptr collected);
 
-Array_list_ptr collect(Node_collector_ptr node_collector);
+Array_list_ptr parse_node_collect(Node_collector_ptr node_collector);
 
 #endif //PARSETREE_NODECOLLECTOR_H

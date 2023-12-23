@@ -53,7 +53,7 @@ void free_parse_tree(Parse_tree_ptr parse_tree) {
  */
 Parse_node_ptr next_leaf_node(const Parse_tree* parse_tree, const Parse_node* parse_node) {
     Node_collector_ptr node_collector = create_node_collector(parse_tree->root, english_leaf_satisfies);
-    Array_list_ptr leafList = collect(node_collector);
+    Array_list_ptr leafList = parse_node_collect(node_collector);
     for (int i = 0; i < leafList->size - 1; i++){
         Parse_node_ptr leaf = array_list_get(leafList, i);
         if (leaf == parse_node){
@@ -72,7 +72,7 @@ Parse_node_ptr next_leaf_node(const Parse_tree* parse_tree, const Parse_node* pa
  */
 Parse_node_ptr previous_leaf_node(const Parse_tree* parse_tree, const Parse_node* parse_node) {
     Node_collector_ptr node_collector = create_node_collector(parse_tree->root, english_leaf_satisfies);
-    Array_list_ptr leafList = collect(node_collector);
+    Array_list_ptr leafList = parse_node_collect(node_collector);
     for (int i = 1; i < leafList->size; i++){
         Parse_node_ptr leaf = array_list_get(leafList, i);
         if (leaf == parse_node){
