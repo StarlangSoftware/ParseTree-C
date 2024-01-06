@@ -97,11 +97,11 @@ void testWordCount(){
 }
 
 int main(){
-    parseTree1 = create_parse_tree("../trees/0000.dev");
-    parseTree2 = create_parse_tree("../trees/0001.dev");
-    parseTree3 = create_parse_tree("../trees/0002.dev");
-    parseTree4 = create_parse_tree("../trees/0003.dev");
-    parseTree5 = create_parse_tree("../trees/0014.dev");
+    parseTree1 = create_parse_tree("trees/0000.dev");
+    parseTree2 = create_parse_tree("trees/0001.dev");
+    parseTree3 = create_parse_tree("trees/0002.dev");
+    parseTree4 = create_parse_tree("trees/0003.dev");
+    parseTree5 = create_parse_tree("trees/0014.dev");
     testNodeCount();
     testFullSentence();
     testLeafCount();

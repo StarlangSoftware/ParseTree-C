@@ -6,7 +6,7 @@
 #include "../src/TreeBank.h"
 
 int main(){
-    Tree_bank_ptr tree_bank = create_tree_bank("../trees");
+    Tree_bank_ptr tree_bank = create_tree_bank("trees");
     if (tree_bank_size(tree_bank) != 5){
         printf("Error in tree bank test 1");
     }
