@@ -38,6 +38,10 @@ Parse_tree_ptr create_parse_tree(const char *file_name) {
     return result;
 }
 
+/**
+ * Frees memory allocated for parse tree.
+ * @param parse_tree Current parse tree.
+ */
 void free_parse_tree(Parse_tree_ptr parse_tree) {
     free_(parse_tree->name);
     if (parse_tree->root != NULL){
@@ -158,10 +162,20 @@ Array_list_ptr constituent_span_list(const Parse_tree *parse_tree) {
     return result;
 }
 
+/**
+ * Compare two parse trees based on their file names.
+ * @param parse_tree1 First parse tree.
+ * @param parse_tree2 Second parse tree.
+ * @return String comparison result between first and second parse tree file names.
+ */
 int compare_parse_tree(const Parse_tree *parse_tree1, const Parse_tree *parse_tree2) {
     return strcmp(parse_tree1->name, parse_tree2->name);
 }
 
+/**
+ * Basic constructor for a ParseTree. Initializes the root node with the input.
+ * @param root Root node of the tree
+ */
 Parse_tree_ptr create_parse_tree2(Parse_node_ptr root) {
     Parse_tree_ptr result = malloc_(sizeof(Parse_tree), "create_parse_tree2");
     result->root = root;

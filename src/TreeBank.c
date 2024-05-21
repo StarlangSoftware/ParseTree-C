@@ -36,6 +36,10 @@ Tree_bank_ptr create_tree_bank(const char *folder) {
     return result;
 }
 
+/**
+ * Frees memory allocated for treebank.
+ * @param tree_bank Current treebank.
+ */
 void free_tree_bank(Tree_bank_ptr tree_bank) {
     free_array_list(tree_bank->parse_trees, (void (*)(void *)) free_parse_tree);
     free_(tree_bank);
@@ -83,6 +87,10 @@ Parse_tree_ptr get_parse_tree(const Tree_bank* tree_bank, int index) {
     return array_list_get(tree_bank->parse_trees, index);
 }
 
+/**
+ * Removes the parse tree at position index from the treebank.
+ * @param index Position of the tree in the treebank.
+ */
 void remove_tree(Tree_bank_ptr tree_bank, int index) {
     array_list_remove(tree_bank->parse_trees, index, (void (*)(void *)) free_parse_tree);
 }

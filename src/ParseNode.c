@@ -100,6 +100,9 @@ Parse_node_ptr create_parse_node4(Parse_node_ptr left, char* data) {
     return result;
 }
 
+/**
+ * Empty constructor for ParseNode class.
+ */
 Parse_node_ptr create_parse_node5() {
     Parse_node_ptr result = malloc_(sizeof(Parse_node), "create_parse_node5");
     result->data = NULL;
@@ -108,6 +111,10 @@ Parse_node_ptr create_parse_node5() {
     return result;
 }
 
+/**
+ * Frees memory allocated for parse node recursively. Calls free_parse_node for its children.
+ * @param parse_node
+ */
 void free_parse_node(Parse_node_ptr parse_node) {
     for (int i = 0; i < parse_node->children->size; i++) {
         free_parse_node(array_list_get(parse_node->children, i));

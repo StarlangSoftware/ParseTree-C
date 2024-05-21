@@ -20,6 +20,10 @@ Node_collector_ptr create_node_collector(Parse_node_ptr root_node, bool (*satisf
     return result;
 }
 
+/**
+ * Frees memory allocated for node collector.
+ * @param node_collector Node collector.
+ */
 void free_node_collector(Node_collector_ptr node_collector) {
     free_(node_collector);
 }
