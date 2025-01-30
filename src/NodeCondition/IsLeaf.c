@@ -6,7 +6,7 @@
 
 /**
  * Implemented node condition for the leaf node. If a node has no children it is a leaf node.
- * @param parseNode Checked node.
+ * @param parse_node Checked node.
  * @return True if the input node is a leaf node, false otherwise.
  */
 bool leaf_satisfies(const Parse_node *parse_node) {

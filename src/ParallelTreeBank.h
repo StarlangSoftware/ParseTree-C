@@ -22,12 +22,12 @@ void free_parallel_tree_bank(Parallel_tree_bank_ptr parallel_tree_bank);
 
 void remove_different_trees(Parallel_tree_bank_ptr parallel_tree_bank);
 
-Parse_tree_ptr from_tree(const Parallel_tree_bank* parallelTreeBank, int index);
+Parse_tree_ptr from_tree(const Parallel_tree_bank* parallel_tree_bank, int index);
 
-Parse_tree_ptr to_tree(const Parallel_tree_bank* parallelTreeBank, int index);
+Parse_tree_ptr to_tree(const Parallel_tree_bank* parallel_tree_bank, int index);
 
-int parallel_tree_bank_size(const Parallel_tree_bank* parallelTreeBank);
+int parallel_tree_bank_size(const Parallel_tree_bank* parallel_tree_bank);
 
-int size(const Parallel_tree_bank* parallelTreeBank);
+int size(const Parallel_tree_bank* parallel_tree_bank);
 
 #endif //PARSETREE_PARALLELTREEBANK_H

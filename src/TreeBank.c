@@ -12,7 +12,8 @@
 /**
  * A constructor of TreeBank class which reads all {@link ParseTree] files inside the given folder. For each
  * file inside that folder, the constructor creates a ParseTree and puts in inside the list parseTrees.
- */
+ * @param folder Folder that stores the tree bank files.
+*/
 Tree_bank_ptr create_tree_bank(const char *folder) {
     Tree_bank_ptr result = malloc_(sizeof(Tree_bank), "create_tree_bank");
     result->parse_trees = create_array_list();
@@ -47,6 +48,7 @@ void free_tree_bank(Tree_bank_ptr tree_bank) {
 
 /**
  * Strips punctuation symbols from all parseTrees in this TreeBank.
+ * @param tree_bank Current treebank.
  */
 void strip_punctuation_tree_bank(const Tree_bank *tree_bank) {
     for (int i = 0; i < tree_bank->parse_trees->size; i++){
@@ -57,6 +59,7 @@ void strip_punctuation_tree_bank(const Tree_bank *tree_bank) {
 
 /**
  * Returns number of trees in the TreeBank.
+ * @param tree_bank Current treebank.
  * @return Number of trees in the TreeBank.
  */
 int tree_bank_size(const Tree_bank *tree_bank) {
@@ -66,7 +69,8 @@ int tree_bank_size(const Tree_bank *tree_bank) {
 /**
  * Returns number of words in the parseTrees in the TreeBank. If excludeStopWords is true, stop words are not
  * counted.
- * @param excludeStopWords If true, stop words are not included in the count process.
+ * @param tree_bank Current treebank.
+ * @param exclude_stop_words If true, stop words are not included in the count process.
  * @return Number of all words in all parseTrees in the TreeBank.
  */
 int word_count_tree_bank(const Tree_bank *tree_bank, bool exclude_stop_words) {
@@ -80,6 +84,7 @@ int word_count_tree_bank(const Tree_bank *tree_bank, bool exclude_stop_words) {
 
 /**
  * Accessor for a single ParseTree.
+ * @param tree_bank Current treebank.
  * @param index Index of the parseTree.
  * @return The ParseTree at the given index.
  */
@@ -89,6 +94,7 @@ Parse_tree_ptr get_parse_tree(const Tree_bank* tree_bank, int index) {
 
 /**
  * Removes the parse tree at position index from the treebank.
+ * @param tree_bank Current treebank.
  * @param index Position of the tree in the treebank.
  */
 void remove_tree(Tree_bank_ptr tree_bank, int index) {

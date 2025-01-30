@@ -68,7 +68,7 @@ bool is_chunk_label(const char *word) {
  * @return Trimmed symbol.
  */
 char* trim_symbol(char* word) {
-    char* result;
+    char* result = NULL;
     int minusIndex, equalIndex;
     if (starts_with(word, "-") || (str_find_c(word, "-") == -1 && str_find_c(word, "=") == -1)){
         return word;

@@ -52,7 +52,8 @@ void free_parse_tree(Parse_tree_ptr parse_tree) {
 
 /**
  * Gets the next leaf node after the given leaf node in the ParseTree.
- * @param parseNode ParseNode for which next node is calculated.
+ * @param parse_tree Parse tree object
+ * @param parse_node ParseNode for which next node is calculated.
  * @return Next leaf node after the given leaf node.
  */
 Parse_node_ptr next_leaf_node(const Parse_tree* parse_tree, const Parse_node* parse_node) {
@@ -71,7 +72,8 @@ Parse_node_ptr next_leaf_node(const Parse_tree* parse_tree, const Parse_node* pa
 
 /**
  * Gets the previous leaf node before the given leaf node in the ParseTree.
- * @param parseNode ParseNode for which previous node is calculated.
+ * @param parse_tree Parse tree object
+ * @param parse_node ParseNode for which previous node is calculated.
  * @return Previous leaf node before the given leaf node.
  */
 Parse_node_ptr previous_leaf_node(const Parse_tree* parse_tree, const Parse_node* parse_node) {
@@ -90,6 +92,7 @@ Parse_node_ptr previous_leaf_node(const Parse_tree* parse_tree, const Parse_node
 
 /**
  * Calls recursive method to calculate the number of all nodes, which have more than one children.
+ * @param parse_tree Parse tree object
  * @return Number of all nodes, which have more than one children.
  */
 int node_count_with_multiple_children(const Parse_tree *parse_tree) {
@@ -98,6 +101,7 @@ int node_count_with_multiple_children(const Parse_tree *parse_tree) {
 
 /**
  * Calls recursive method to calculate the number of all nodes tree.
+ * @param parse_tree Parse tree object
  * @return Number of all nodes in the tree.
  */
 int node_count(const Parse_tree *parse_tree){
@@ -143,7 +147,8 @@ void strip_punctuation_tree(const Parse_tree *parse_tree) {
 
 /**
  * Calls recursive function to count the number of words in the tree.
- * @param excludeStopWords If true, stop words are not counted.
+ * @param parse_tree Parse tree object
+ * @param exclude_stop_words If true, stop words are not counted.
  * @return Number of words in the tree.
  */
 int word_count_tree(const Parse_tree *parse_tree, bool exclude_stop_words) {
@@ -152,6 +157,7 @@ int word_count_tree(const Parse_tree *parse_tree, bool exclude_stop_words) {
 
 /**
  * Generates a list of constituents in the parse tree and their spans.
+ * @param parse_tree Parse tree object
  * @return A list of constituents in the parse tree and their spans.
  */
 Array_list_ptr constituent_span_list(const Parse_tree *parse_tree) {

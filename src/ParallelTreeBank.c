@@ -2,7 +2,6 @@
 // Created by Olcay Taner YILDIZ on 1.06.2023.
 //
 
-#include <stdlib.h>
 #include <HashMap/HashMap.h>
 #include "ParallelTreeBank.h"
 #include "Memory/Memory.h"
@@ -68,8 +67,8 @@ void remove_different_trees(Parallel_tree_bank_ptr parallel_tree_bank) {
  * @param index Position of the tree in the first treebank.
  * @return The tree at position index in the first treebank.
  */
-Parse_tree_ptr from_tree(const Parallel_tree_bank *parallelTreeBank, int index) {
-    return get_parse_tree(parallelTreeBank->from_tree_bank, index);
+Parse_tree_ptr from_tree(const Parallel_tree_bank *parallel_tree_bank, int index) {
+    return get_parse_tree(parallel_tree_bank->from_tree_bank, index);
 }
 
 /**
@@ -78,8 +77,8 @@ Parse_tree_ptr from_tree(const Parallel_tree_bank *parallelTreeBank, int index) 
  * @param index Position of the tree in the second treebank.
  * @return The tree at position index in the second treebank.
  */
-Parse_tree_ptr to_tree(const Parallel_tree_bank *parallelTreeBank, int index) {
-    return get_parse_tree(parallelTreeBank->to_tree_bank, index);
+Parse_tree_ptr to_tree(const Parallel_tree_bank *parallel_tree_bank, int index) {
+    return get_parse_tree(parallel_tree_bank->to_tree_bank, index);
 }
 
 /**
@@ -96,6 +95,6 @@ int parallel_tree_bank_size(const Parallel_tree_bank *parallel_tree_bank) {
  * @param parallel_tree_bank Parallel treebank.
  * @return Number of sentences.
  */
-int size(const Parallel_tree_bank *parallelTreeBank) {
-    return tree_bank_size(parallelTreeBank->from_tree_bank);
+int size(const Parallel_tree_bank *parallel_tree_bank) {
+    return tree_bank_size(parallel_tree_bank->from_tree_bank);
 }

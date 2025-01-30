@@ -8,7 +8,7 @@
 
 /**
  * Implemented node condition for English leaf node.
- * @param parseNode Checked node.
+ * @param parse_node Checked node.
  * @return If the node is a leaf node and is not a dummy node, returns true; false otherwise.
  */
 bool english_leaf_satisfies(const Parse_node *parse_node) {
