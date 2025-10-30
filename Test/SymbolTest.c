@@ -8,6 +8,7 @@
 #include "../src/Symbol.h"
 
 int main(){
+    start_memory_check();
     char* word = "NP-SBJ";
     char* result = trim_symbol(word);
     if (strcmp(result, "NP") != 0){
@@ -32,4 +33,5 @@ int main(){
         printf("Error in trim 4");
     }
     free_(result);
+    end_memory_check();
 }

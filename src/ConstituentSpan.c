@@ -13,7 +13,7 @@
  * @param end End index of the span.
  */
 Constituent_span_ptr create_constituent_span(const char *constituent, int start, int end) {
-    Constituent_span_ptr result = malloc_(sizeof(Constituent_span), "create_constituent_span");
+    Constituent_span_ptr result = malloc_(sizeof(Constituent_span));
     result->constituent = str_copy(result->constituent, constituent);
     result->start = start;
     result->end = end;

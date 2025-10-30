@@ -14,7 +14,7 @@
  * @param folder2 Folder containing the files for trees in the second treebank.
  */
 Parallel_tree_bank_ptr create_parallel_tree_bank(const char *folder1, const char *folder2) {
-    Parallel_tree_bank_ptr result = malloc_(sizeof(Parallel_tree_bank), "create_parallel_tree_bank");
+    Parallel_tree_bank_ptr result = malloc_(sizeof(Parallel_tree_bank));
     result->from_tree_bank = create_tree_bank(folder1);
     result->to_tree_bank = create_tree_bank(folder2);
     remove_different_trees(result);

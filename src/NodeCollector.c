@@ -14,7 +14,7 @@
  * @param satisfies The condition interface for which all nodes in the subtree rooted at rootNode will be checked
  */
 Node_collector_ptr create_node_collector(Parse_node_ptr root_node, bool (*satisfies)(const Parse_node *)) {
-    Node_collector_ptr result = malloc_(sizeof(Node_collector), "create_node_collector");
+    Node_collector_ptr result = malloc_(sizeof(Node_collector));
     result->root_node = root_node;
     result->satisfies = satisfies;
     return result;

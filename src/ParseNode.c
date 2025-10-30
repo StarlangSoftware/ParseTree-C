@@ -104,7 +104,7 @@ Parse_node_ptr create_parse_node4(Parse_node_ptr left, char* data) {
  * Empty constructor for ParseNode class.
  */
 Parse_node_ptr create_parse_node5() {
-    Parse_node_ptr result = malloc_(sizeof(Parse_node), "create_parse_node5");
+    Parse_node_ptr result = malloc_(sizeof(Parse_node));
     result->data = NULL;
     result->parent = NULL;
     result->children = create_array_list();

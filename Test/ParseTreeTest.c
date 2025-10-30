@@ -2,6 +2,8 @@
 // Created by Olcay Taner YILDIZ on 1.06.2023.
 //
 #include <stdio.h>
+#include <Memory/Memory.h>
+
 #include "../src/ParseTree.h"
 
 Parse_tree_ptr parseTree1, parseTree2, parseTree3, parseTree4, parseTree5;
@@ -97,6 +99,7 @@ void testWordCount(){
 }
 
 int main(){
+    start_memory_check();
     parseTree1 = create_parse_tree("trees/0000.dev");
     parseTree2 = create_parse_tree("trees/0001.dev");
     parseTree3 = create_parse_tree("trees/0002.dev");
@@ -112,4 +115,5 @@ int main(){
     free_parse_tree(parseTree3);
     free_parse_tree(parseTree4);
     free_parse_tree(parseTree5);
+    end_memory_check();
 }

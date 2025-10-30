@@ -19,7 +19,7 @@
  */
 Parse_tree_ptr create_parse_tree(const char *file_name) {
     char line[MAX_LINE_LENGTH];
-    Parse_tree_ptr result = malloc_(sizeof(Parse_tree), "create_parse_tree");
+    Parse_tree_ptr result = malloc_(sizeof(Parse_tree));
     result->name = str_copy(result->name, file_name);
     FILE* input_file = fopen(file_name, "r");
     char* read = fgets(line, MAX_LINE_LENGTH, input_file);
@@ -183,7 +183,7 @@ int compare_parse_tree(const Parse_tree *parse_tree1, const Parse_tree *parse_tr
  * @param root Root node of the tree
  */
 Parse_tree_ptr create_parse_tree2(Parse_node_ptr root) {
-    Parse_tree_ptr result = malloc_(sizeof(Parse_tree), "create_parse_tree2");
+    Parse_tree_ptr result = malloc_(sizeof(Parse_tree));
     result->root = root;
     result->name = NULL;
     return result;
